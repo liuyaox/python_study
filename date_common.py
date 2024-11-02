@@ -1,13 +1,25 @@
-
-
+import time
 from datetime import datetime, date, timedelta
 import calendar
 
 
+localtime = time.localtime()
+cur_date = time.strftime('%Y%m%d', localtime)  # 当前年月日
+cur_hms = time.strftime('%H:%M:%S', localtime)  # 当前时分秒
+cur_time = time.strftime('%Y%m%d-%H%M%S', localtime)  # 当前年月日时分秒
+
+
+# 时间的加和减
+time1 = datetime.strptime('2017-10-18 05:23:03', '%Y-%m-%d %H:%M:%S')
+time2 = time1 + timedelta(hours=8)
+time2_str = datetime.strftime(time2, '%Y-%m-%d %H:%M:%S')
+
+
+
 # 今天和昨天
-today = date.today() # 今天
+today = date.today()        # 今天
 today_str = datetime.strftime(today, '%Y-%m-%d')
-yesterday = today - timedelta(days=1)	# 昨天
+yesterday = today - timedelta(days=1)	    # 昨天
 yesterday_str = datetime.strftime(yesterday, '%Y-%m-%d')
 
 
@@ -19,7 +31,7 @@ year0, month0, day0 = date0.year, date0.month, date0.day		# 年 月 日
 
 
 # 0.基准日期本身
-month0_str = str(year0) + '-0' + str(month0) if month0 < 10 else str(year0) + '-' + str(month0)	# 年-月 str
+month0_str = str(year0) + '-0' + str(month0) if month0 < 10 else str(year0) + '-' + str(month0)	    # 年-月 str
 
 week0, dayofweek0 = date0.isocalendar()[1:] 													# 周 周内第几天
 week0_str = str(year0) + '-0' + str(week0) if week0 < 10 else str(year0) + '-' + str(week0) 	# 年-周 str
@@ -69,3 +81,4 @@ lastday_nextmonth = firstday_nextmonth.replace(day=calendar.monthrange(firstday_
 # 3. 通用方法
 date_str = datetime.strftime(date_int, '%Y-%m-%d') 	# 格式日期 --> 字符串
 date_int = datetime.strptime(date_str, '%Y-%m-%d') 	# 字符串 --> 格式日期
+
